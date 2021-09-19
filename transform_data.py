@@ -15,7 +15,7 @@ class Transform_data:
     def __init__(self):
         pass
 
-    # 
+    # Takes a dataframe object containg general covid stats
     def get_deaths_by_age(self, covid_data):
         covid_deaths = covid_data[covid_data['Case status'] == "Died"]
         return covid_deaths.groupby(['Age group']).size()
