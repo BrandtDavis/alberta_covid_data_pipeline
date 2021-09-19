@@ -1,38 +1,30 @@
 # Author: Brandt Davis
-# This will become a class that handles all the relevant data transformations for Alberta covid stats
+# This class handles all the relevant data transformations for Alberta covid stats
+#
 
 
+# Imports 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-covid_data = pd.read_csv("covid-19-alberta-statistics-data.csv")
+class Transform_data:
+    # Attributes
 
-status_died = covid_data[covid_data['Case status'] == "Died"]
+    # Methods
+    def __init__(self):
+        pass
 
-#status_died.to_csv("deaths.csv", ",")
-
-x = status_died.groupby(['Age group']).size()
-y = status_died['Case status'].shape
-
-
-
-print(status_died.head())
-#print(status_died.shape)
-print(type(x))
-print(len(x))
+    # 
+    def get_deaths_by_age(self, covid_data):
+        covid_deaths = covid_data[covid_data['Case status'] == "Died"]
+        return covid_deaths.groupby(['Age group']).size()
 
 
-plt.figure(figsize=(12,10))
-x.sort_values().plot.bar()
 
-#print()
 
-#fig, ax = plt.subplots(figsize=(10, 8))
-#ax.bar(x, y)
 
-#plt.bar(x, y)
-plt.savefig("chart.png")
+
 
 
 
