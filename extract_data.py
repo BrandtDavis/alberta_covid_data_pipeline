@@ -6,6 +6,9 @@
 
 # Imports 
 import pandas as pd
+import requests
+import mechanize
+from bs4 import BeautifulSoup as soup
 
 class Extract_data:
     # Attributes
@@ -15,4 +18,22 @@ class Extract_data:
         pass
 
     def get_alberta_covid_stats_dataframe(self):
+        #page = requests.get("https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export")
+        #return page
         return pd.read_csv("Data/covid-19-alberta-statistics-data.csv")
+
+'''
+e = Extract_data()
+page = e.get_alberta_covid_stats_dataframe()
+
+page = soup(page.content, 'html.parser')
+file = page.find('a', class_='goa-cta')
+
+
+print()
+
+link ="https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export" 
+page = requests.get(link+file['href']) 
+
+print(page.content)
+'''
