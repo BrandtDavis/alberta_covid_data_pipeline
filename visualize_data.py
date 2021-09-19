@@ -18,3 +18,10 @@ class Visualize_data:
         plt.figure(figsize=(12,10))
         data.sort_values().plot.bar()
         plt.savefig("Visuals/chart.png")
+
+    #
+    def create_line_graph(self):
+        pass
+        # Creates a graph similar to stock price tracking over time
+        
+        
