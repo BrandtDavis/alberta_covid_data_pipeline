@@ -17,23 +17,22 @@ class Extract_data:
     def __init__(self):
         pass
 
+    def file_is_outdated(self):
+        pass
+
     def get_alberta_covid_stats_dataframe(self):
-        #page = requests.get("https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export")
-        #return page
         return pd.read_csv("Data/covid-19-alberta-statistics-data.csv")
 
 '''
-e = Extract_data()
-page = e.get_alberta_covid_stats_dataframe()
+url = "https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export"
 
+
+page = requests.get(url)
 page = soup(page.content, 'html.parser')
 file = page.find('a', class_='goa-cta')
+data_url = requests.compat.urljoin(url, file['href'])
+print(data_url)
 
-
-print()
-
-link ="https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export" 
-page = requests.get(link+file['href']) 
-
-print(page.content)
+newpage = requests.get(data_url)
+open('./Data/covid-19-alberta-statistics-data.csv', 'wb').write(newpage.content)
 '''
