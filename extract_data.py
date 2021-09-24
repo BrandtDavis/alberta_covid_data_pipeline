@@ -24,7 +24,7 @@ class Extract_data:
     # - Create/overwrite files in the Data folder, which correspond to the 
     #   downloaded .csv files
     #
-    def retrieve_ab_csv_files():
+    def retrieve_ab_csv_files(self):
         url = "https://www.alberta.ca/stats/covid-19-alberta-statistics.htm#data-export"
 
         page = requests.get(url)
