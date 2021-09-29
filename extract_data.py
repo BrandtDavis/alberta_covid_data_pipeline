@@ -38,7 +38,6 @@ class Extract_data:
     def save_file(self, file, data_content):
         filename = "./Data/" + file['href'].split("/data/stats/")[1] 
         open(filename, 'wb').write(data_content.content)
-
                
     # Iterate over all the 'Download' buttons on AB COVID-19 stats page
     def retrieve_ab_csv_files(self):
@@ -50,8 +49,8 @@ class Extract_data:
             data_url = requests.compat.urljoin(self.AB_STATS_URL, f['href'])
             data_content = requests.get(data_url)
             self.save_file(f, data_content)
+        
+        return files 
            
-
-
     def get_alberta_covid_stats_dataframe(self):
         return pd.read_csv("Data/covid-19-alberta-statistics-data.csv")

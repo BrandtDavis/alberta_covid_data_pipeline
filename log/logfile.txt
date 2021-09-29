@@ -1,0 +1,6 @@
+======== FILES DOWNLOADED =======
+======= 29/09/2021 12:58:40=======
+	/data/stats/covid-19-alberta-statistics-data.csv
+	/data/stats/covid-19-alberta-statistics-summary-data.csv
+	/data/stats/covid-19-alberta-statistics-map-data.csv
+	/data/stats/lga-coverage.csv
