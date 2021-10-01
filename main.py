@@ -9,7 +9,7 @@ import log_writer
 import visualize_data
 
 
-# Initialize objects
+# INITIALIZE OBJECTS
 extract = extract_data.Extract_data()
 transform = transform_data.Transform_data()
 load = load_data.Load_data()
@@ -17,9 +17,12 @@ load = load_data.Load_data()
 logger = log_writer.Log_writer()
 visualize = visualize_data.Visualize_data()
 
-# Pipeline operations 
+# PIPELINE OPERATION
+# ==================
+
+# Retrieve files if they are outdated, log the extraction 
 file_list = extract.retrieve_ab_csv_files()
-logger.record_files_downloaded(file_list)
+logger.log_data_extraction(file_list)
 
 ab_covid_data = extract.get_alberta_covid_stats_dataframe()
 ab_covid_deaths = transform.get_deaths_by_age(ab_covid_data)

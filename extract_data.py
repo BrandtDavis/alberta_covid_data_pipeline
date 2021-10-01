@@ -28,6 +28,7 @@ class Extract_data:
     def __init__(self):
         pass
 
+    # Parse the control_log file to see if enough time has passed to re-retrieve the files
     def is_outdated(self):
         pass
 
@@ -41,6 +42,10 @@ class Extract_data:
                
     # Iterate over all the 'Download' buttons on AB COVID-19 stats page
     def retrieve_ab_csv_files(self):
+
+        #if is_outdated():
+
+        
         page = requests.get(self.AB_STATS_URL)
         page = soup(page.content, 'html.parser')
         files = page.findAll('a', class_='goa-cta')
