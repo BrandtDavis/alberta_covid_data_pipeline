@@ -76,7 +76,7 @@ class Extract_data:
         #self.save_html_file('./Data/html/tables.html', str(body.prettify()))
 
         p4 = ""
-        body = self.get_page_from_local_storage('./Data/html/tables.html')
+        body = self.get_page_from_local_storage('./Data/html/tables.html').find_all('div', {"id" : "vaccine-outcomes"})[0]
         body.find('ul').decompose()
 
         table_titles = body.find_all('p')
@@ -97,7 +97,7 @@ class Extract_data:
 
     def get_page_from_local_storage(self, filepath):
         ''' Return the contents of a web page stored at "./Data/html/" '''
-        return soup(open(filepath).read(), 'html.parser').find_all('div', {"id" : "vaccine-outcomes"})[0]
+        return soup(open(filepath).read(), 'html.parser')
 
     def get_alberta_covid_stats_dataframe(self):
         return pd.read_csv("Data/covid-19-alberta-statistics-data.csv")
