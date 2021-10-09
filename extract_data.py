@@ -6,8 +6,9 @@
 
 # Imports 
 import pandas as pd
+from datetime import datetime
+from datetime import date
 import requests
-import mechanize
 from bs4 import BeautifulSoup as soup
 
 class Extract_data:
