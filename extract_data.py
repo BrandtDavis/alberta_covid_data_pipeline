@@ -46,14 +46,8 @@ class Extract_data:
         return False
 
     # Create/overwrite files in the Data folder, which correspond to the downloaded .csv files
-    def save_file(self, file, data_content):
-        filename = "./Data/" + file['href'].split("/data/stats/")[1] 
-        open(filename, 'wb').write(data_content.content)
-
-    # Create/overwrite files in the Data folder, which correspond to the scraped html
-    # Refactor: merge with 'save_file(...)'
-    def save_html_file(self, filename, html_content):
-        open(filename, 'w').write(html_content)
+    def save_file(self, filepath, file_mode, file_content):
+        open(filepath, file_mode).write(file_content)
 
     # Iterate over all the 'Download' buttons on AB COVID-19 stats page
     def retrieve_ab_csv_files(self):
@@ -63,7 +57,8 @@ class Extract_data:
         for f in files:
             data_url = requests.compat.urljoin(self.AB_STATS_URL, f['href'])
             data_content = requests.get(data_url)
-            self.save_file(f, data_content)
+            filepath = "./Data/csv_files/" + f['href'].split("/data/stats/")[1]
+            self.save_file(filepath, 'wb', data_content.content)
         
         return files 
     
@@ -73,7 +68,7 @@ class Extract_data:
         # This code need not be run every time, only when the data changes, this will become automated
         #page = soup(requests.get(self.AB_VACC_URL).content, 'html.parser')
         #body = page.find_all('div', {"id" : "vaccine-outcomes"})[0]
-        #self.save_html_file('./Data/html/tables.html', str(body.prettify()))
+        #self.save_file('./Data/html/tables.html', str(body.prettify()))
 
         p4 = ""
         body = self.get_page_from_local_storage('./Data/html/tables.html').find_all('div', {"id" : "vaccine-outcomes"})[0]
@@ -86,8 +81,10 @@ class Extract_data:
                 p4 = t
 
         table_4 = p4.findNext('table')
-        #df = pd.read_html(str(table_4.parent))
-        #df.head()
+        self.save_file('./Data/html/table_4.html', 'w', str(table_4))
+        #df = pd.read_html(str(table_4))
+        #df[0].info()
+        # print(str(df[0]))
 
 
     # GET METHODS
